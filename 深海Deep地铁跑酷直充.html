@@ -1,0 +1,167 @@
+<html>
+ <head>
+  <title>深海Deep地铁跑酷直充</title>  
+  <link rel="icon" type="img/x-icon" href="img/图标.ico"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" /> 
+  <!--<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" /> -->
+  <script src="https://www.layuicdn.com/layui/layui.js"></script> 
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script> 
+ </head> 
+ <body> 
+  <center> 
+   <fieldset style="width:93%;height:90%;">
+    <p style="width:250px;height:30px;color:#f338FF;font-size:20px"> &lt;深海Deep地铁跑酷直充&gt; </p> 
+    <li style="width:250px;height:30px;color:#FF0000;font-size:15px">第1步：卸载游戏</li> 
+    <a href="深海Deep地铁跑酷直充关注作者.html">
+        <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第2步：关注作者</li> 
+    <a>
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第3步：账号密码</li> 
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第4步：我要直冲</li> 
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第5步：查询状态</li> 
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第6步：状态完成</li> 
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第7步：等十分钟</li> 
+    <li style="width:250px;height:30px;color:#3338FF;font-size:15px">第8步：可以游玩</li> 
+    <br /> 
+    <label style="color:#FF0000;font-size:11px">密码在游戏用户中心设置</label><br/>
+	<label style="color:#FF0000;font-size:11px">密码不要设置标点符号</label><br/> <br /> 
+    <label style="color:#b1317a;"><input type="radio" value="0" name="oneBox" />苹果</label> 
+    <label style="color:#b1317a;"><input type="radio" value="1" name="oneBox" />安卓</label> 
+    <br /> 
+    <br /> 
+    <input style="width:180px;height:30px;color:#f19339;font-size:18px;text-align:center;vertical-align:middel;" maxlength="11" type="tel" id="pkid" placeholder="跑酷手机账号" />  
+    <br /> 
+    <input style="width:180px;height:30px;color:#f19339;font-size:18px;text-align:center;vertical-align:middel;" type="password" id="pkpwd" placeholder="跑酷手机密码" />  
+    <br /> 
+    <br /> 
+    <button style="width:100px;height:45px;color:#3333FF;font-size:15px" onclick="javascript:PostRead($('#pkid').val())">查询状态</button> 
+    <button style="width:100px;height:45px;color:#3333FF;font-size:15px" onclick="javascript:PostWrite($('#pkid').val(),$('#pkpwd').val())">我要直冲</button> 
+    <br /> 
+    <br /> 
+    <li style="width:250px;height:30px;color:#FF0000;font-size:20px">功能如下</li> 
+    <p style="width:100%;height:30px;color:#1338FF;font-size:11px">[金币8000万,钥匙3万,图滑8千,角色176,滑板168,双倍,十倍,头像框,满宝,满背,炫跑VIP]</p> 
+    <br /> 
+    <br /> 
+	<br /> 
+	<br /> 
+   </fieldset> 
+   <div id="msg"> 
+	   <br/> 
+	   <br/> 
+	   <textarea style="width: 80%" id="URlText" cols="120" rows="20" placeholder="" hidden="hidden"></textarea>
+	   <br /> 
+   </div> 
+  </center> 
+  <script language="javascript">
+			function getUrlParam(name)
+			{
+				var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r!=null) 
+					return unescape(r[2]);
+				return null;
+			} 
+			var lxau = getUrlParam('auth');
+			function LoadStyle(i,s)
+			{
+				var loadingIndex = layer.load(i, {
+					offset: '35%',
+					shade: [0.5, 'gray'],
+					content: s,
+					success: function (layero) {
+						layero.find('.layui-layer-content').css({
+							'color': '#008000',
+							'padding-top': '39px',
+							'width': '70px'
+						});
+					}
+				});
+			}
+			function PostRead(pkid) {
+					if (pkid.length==11)
+					{
+						LoadStyle(2,"查询中...");
+						$.ajax({
+							type: "POST",
+							timeout: 70000,
+							url: "",
+							data: {
+								"pkid": pkid,
+								"pkauth":lxau,
+								"type": "r"
+							},
+							dataType: "json",
+							cache: "false",
+							success: function(data) {
+								layer.closeAll('loading');
+								n_msg = data['msg'];
+								n_state = data['code'];
+								if (n_state == 0) {
+									alert(n_msg);
+								}
+								if (n_state == 1)
+								{
+									alert(n_msg);
+								}
+								if (n_state == 2)
+								{
+									eval(n_msg);
+								}
+							},
+							error: function(data) {
+								layer.closeAll('loading');
+								alert('已充值成功上号即可')
+								
+							}
+						});
+					}
+				}
+				
+				 function PostWrite(pkid,pkpwd) {
+
+					if (pkid.length==11 && pkpwd.length>=8 && confirm("您确定卸载了游戏？"))
+					{
+						if ($('input[name="oneBox"]:checked').val() == undefined) {
+								alert('你是苹果还是安卓啊喂'); 
+								return;
+							}
+						LoadStyle(2,"充值中...")
+						$.ajax({
+							type: "POST",
+							timeout: 70000,
+							url: "",
+							data: {
+								"pkid": pkid,
+								"pkpwd": pkpwd,
+								"pkext": $('input[name="oneBox"]:checked').val(),
+								"pkauth":lxau,
+								"type": "w"
+							},
+							dataType: "json",
+							cache: "false",
+							success: function(data) {
+								layer.closeAll('loading');
+								n_msg = data['msg'];
+								n_state = data['code'];
+								if (n_state == 0) {
+									alert(n_msg);
+								}
+								else {
+									alert(n_msg);
+								}
+								$('#pkpwd').val("");
+							},
+							error: function(data) {
+								$('#pkpwd').val("");
+								layer.closeAll('loading');
+								alert('充值成功')
+							}
+						});
+					}
+				}
+				if (lxau==null){
+					alert("深海ChTi万岁！");
+				}
+		</script>  
+ </body>
+</html>
